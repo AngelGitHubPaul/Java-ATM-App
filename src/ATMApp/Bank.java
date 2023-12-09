@@ -16,7 +16,6 @@ public class Bank {
 	 * @return	the uuid
 	 */
 	public String getNewUserUUID() {
-		
 		// inits 
 		String uuid;
 		Random rng = new Random();
@@ -84,5 +83,44 @@ public class Bank {
 	 */
 	public void addAccount(Account anAcct) {
 		this.accounts.add(anAcct);
+	}
+	
+	/*
+	 * Create a new user of the bank
+	 * @param firstName	the user's first name
+	 * @param lasteName	the user's last name
+	 * @param pin 		the user's pin
+	 * @return			the new User object
+	 */
+	public User addUser(String firstName, String lastName, String pin) {
+		// create a new user object and add it to our list
+		User newUser = new User(firstName, lastName, pin, this);
+		this.users.add(newUser);
+		
+		// create a savings account for the user
+		Account newAccount = new Account("Savings", newUser, this);
+		newUser.addAccount(newAccount);
+		this.addAccount(newAccount);
+		
+		return newUser;
+	}
+	
+	/*
+	 * Get the user object associated with a particular userID and pin, if they are valid
+	 * @param userID	the UUID of the user to log in
+	 * @param pin		the pin of the user
+	 * @return			the user object, if the log in is successful, or null, if it is not
+	 */
+	public User userLogin(String userID, String pin) {
+		// search through the list of users
+		for (User u: this.users) {
+			//check user ID is correct
+			if (u.getUUID().compareTo(userID) == 0 && u.validatePin(pin)) {
+				return u;
+			}
+		}
+		
+		// if we havent found the user or incorrect pin
+		return null;
 	}
 }
