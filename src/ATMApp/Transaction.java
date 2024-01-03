@@ -15,7 +15,7 @@ public class Transaction {
 	// the account in which the transaction was performed
 	private Account inAccount;
 	
-	/*
+	/**
 	 * Create a new transaction
 	 * @param amount	the amount transacted
 	 * @param inAccount the account the transaction belong to
@@ -28,7 +28,7 @@ public class Transaction {
 		this.memo = "";
 	}
 	
-	/*
+	/**
 	 * Create a new transaction
 	 * @param amount	the amount transacted
 	 * @param memo		the memo for the transaction
@@ -41,5 +41,25 @@ public class Transaction {
 		
 		// set the memo
 		this.memo = memo;
+	}
+	
+	/**
+	 * Get the amount of the transaction
+	 * @return	the amount
+	 */
+	public double getAmount() {
+		return this.amount;
+	}
+	
+	/**
+	 * Get a string summarizing the transaction
+	 * @return	the summary string
+	 */
+	public String getSummaryLine() {
+		if(this.amount >= 0 ) {
+			return String.format("%s : PHP%.02f : %s", this.timestamp.toString(), this.amount, this.memo);
+		} else {
+			return String.format("%s : PHP(%.02f) : %s", this.timestamp.toString(), -this.amount, this.memo);
+		}
 	}
 }

@@ -11,7 +11,17 @@ public class Bank {
 	
 	private ArrayList<Account> accounts;
 	
-	/*
+	/**
+	 * Create a new Bank object with empty lists of users and accounts
+	 * @param name	the name of the bank
+	 */
+	public Bank(String name) {
+		this.name = name;
+		this.users = new ArrayList<User>();
+		this.accounts = new ArrayList<Account>();		
+	}
+	
+	/**
 	 * Generate a new universally unique ID for a user
 	 * @return	the uuid
 	 */
@@ -44,7 +54,7 @@ public class Bank {
 		return uuid;
 	}
 	
-	/*
+	/**
 	 * Generate a new universally unique ID for an accounb
 	 * @return	the uuid
 	 */
@@ -77,7 +87,7 @@ public class Bank {
 		return uuid;
 	}
 	
-	/*
+	/**
 	 * Add an account for the user
 	 * @param anAcct 	the account to add
 	 */
@@ -85,7 +95,7 @@ public class Bank {
 		this.accounts.add(anAcct);
 	}
 	
-	/*
+	/**
 	 * Create a new user of the bank
 	 * @param firstName	the user's first name
 	 * @param lasteName	the user's last name
@@ -105,7 +115,7 @@ public class Bank {
 		return newUser;
 	}
 	
-	/*
+	/**
 	 * Get the user object associated with a particular userID and pin, if they are valid
 	 * @param userID	the UUID of the user to log in
 	 * @param pin		the pin of the user
@@ -122,5 +132,9 @@ public class Bank {
 		
 		// if we havent found the user or incorrect pin
 		return null;
+	}
+	
+	public String getName() {
+		return this.name;
 	}
 }

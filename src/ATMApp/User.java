@@ -20,7 +20,7 @@ public class User {
 	// the list of accounts for this user
 	private ArrayList<Account> accounts; 	
 	
-	/*
+	/**
 	 * Creation of new User
 	 * @param firstName 	the user's first name
 	 * @param lastName 		the user's last name
@@ -54,7 +54,7 @@ public class User {
 		System.out.printf("New User %s, %s with ID %s created.\n", lastName, firstName, this.uuid);
 	}
 	
-	/*
+	/**
 	 * Add an account for the user
 	 * @param anAcct 	the account to add
 	 */
@@ -62,7 +62,7 @@ public class User {
 		this.accounts.add(anAcct);
 	}
 	
-	/*
+	/**
 	 * Return the user's UUID
 	 * @return 	the uuid
 	 */
@@ -71,7 +71,7 @@ public class User {
 	}
 	
 	
-	/*
+	/**
 	 * Check whether a give pin matches the true User pin
 	 * @param aPin	the pin to check 
 	 * @return		whether the pin is valid or not
@@ -88,5 +88,59 @@ public class User {
 		}
 		
 		return false;
+	}
+	
+	/**
+	 * Return the user's first name
+	 * @return	the first name
+	 */
+	public String getFirstName() {
+		return this.firstName;
+	}
+	
+	/**
+	 * Print summaries for the accounts of this user 
+	 */
+	public void printAccountsSummary() {
+		System.out.printf("\n\n%s's accounts summary\n", this.firstName);
+		for (int a = 0; a < this.accounts.size(); a++ ) {
+			System.out.printf("%d) %s\n", a+1, this.accounts.get(a).getSummaryLine());
+		}
+		System.out.println();
+	}
+	
+	/**
+	 * get the number of accounts of the user
+	 * @return	the number of accounts
+	 */
+	public int numAccounts() {
+		return this.accounts.size();
+	}
+	
+	public void printAcctTransHistory(int acctIdx) {
+		this.accounts.get(acctIdx).printTransHistory();
+	}
+	
+	/**
+	 * Get the balance of a particular account
+	 * @param acctIdx	the index of the account to use
+	 * @return			the balance of the account
+	 */
+	public double getAcctBalance(int acctIdx) {
+		return this.accounts.get(acctIdx).getBalance();
+	}
+	
+	
+	/**
+	 * Get theUUID of a particular account
+	 * @param acctIdx	the index of the account to use
+	 * @return 			the balance of the account
+	 */
+	public String getAcctUUID(int acctIdx) {
+		return this.accounts.get(acctIdx).getUUID();
+	}
+	
+	public void addAcctTransaction(int acctIdx, double amount, String memo) {
+		this.accounts.get(acctIdx).addTransaction(amount, memo);
 	}
 }
